@@ -1,7 +1,8 @@
 from django.apps import AppConfig
-from django.utils import timezone
+from os import environ
 
 from requests import Session
+
 
 class MeteoApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -9,7 +10,7 @@ class MeteoApiConfig(AppConfig):
 
 
 class MeteoApi:
-    token = 'a5dc2527f3b6789c3e7d1bd23afd6583'
+    token = environ.get("metio_token")
     call = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric&lang=ru'
     default_city = 'Moscow'
     session = Session()
